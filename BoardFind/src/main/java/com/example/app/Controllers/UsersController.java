@@ -1,35 +1,53 @@
 package com.example.app.Controllers;
-
-import com.example.app.Models.view.UserCreateRequestModel;
-import com.example.app.service.user.UserService;
+import com.example.app.Config.Errors;
+import com.example.app.Service.UserService;
+import com.example.app.model.RegistrationModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 @Controller
 public class UsersController {
-    private final UserService userService;
 
-    public UsersController(UserService userService) {
-        this.userService = userService;
+    @Autowired
+    private UserService userService;
+
+
+   @GetMapping("/register")
+    public String getRegisterPage(@ModelAttribute RegistrationModel registrationModel){
+       return "users/register";
+   }
+
+    @PostMapping("/register")
+    public String registerUser(@Valid @ModelAttribute RegistrationModel registrationModel, BindingResult bindingResult){
+       if(bindingResult.hasErrors()) {
+           return "users/register";
+       }
+
+       this.userService.register(registrationModel);
+
+       return "redirect:/login";
     }
 
-
-    @RequestMapping(value = "/users/register", method = RequestMethod.GET)
-    public String register(Model model)
-    {
-        model.addAttribute("viewModel",new UserCreateRequestModel());
-        return "users/register";
+    @GetMapping("/login")
+    public String getLoginPage(@RequestParam(required = false) String error, Model model){
+       if(error != null){
+           model.addAttribute("error", Errors.INVALID_CREDENTIALS);
+       }
+       return "users/login";
     }
 
-    @RequestMapping(value = "/users/register", method = RequestMethod.POST)
-    public String register(UserCreateRequestModel viewModel,Model model){
-        //it's ok
-        if(this.userService.register(viewModel.getUsername(), viewModel.getPassword()))
-            return "redirect:/";
-        //errors
-        model.addAttribute("viewModel",viewModel);
-        return "users/register";
+    @GetMapping("/user")
+    public String getUserPage(){
+        return "authorities/user";
     }
+
+    @GetMapping("/admin")
+    public String getAdminPage(){
+        return "authorities/admin";
+    }
+
 }
