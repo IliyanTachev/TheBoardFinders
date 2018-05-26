@@ -10,7 +10,7 @@ public class RegistrationModel {
     @Size(min = 5, max = 100, message = "Username too short")
     private String username;
 
-    @Size(min = 8, max = 150, message = "Password too short")
+    @Size(min = 5, max = 150, message = "Password too short")
     private String password;
 
     private String confirmed_password;

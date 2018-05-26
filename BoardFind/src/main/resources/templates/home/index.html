@@ -5,9 +5,107 @@
     <meta charset="UTF-8"/>
     <title>Home Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
-    <script src="../../static/index.js" type="text/html"></script>
-    <link rel="stylesheet" type="text/css" href="../static/style.css"  th:href="@{/static/style.css}" />
-    <link rel="stylesheet" type="text/css" href="../static/home.css" th:href="@{/static/home.css}" />
+    <style>
+        body {
+
+            background: url('https://i.imgur.com/2VzVJBB.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        a {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            padding: 0px;
+            margin: 0px;
+
+            list-style: none;
+            border: 2px solid transparent;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 8px;
+            border-radius: 15px;
+            font-family: arial;
+
+            text-decoration: none;
+            padding: 15px 35px;
+            display: block;
+            text-align: center;
+            border-radius: 15px;
+            transition: all 0.5s ease-in-out;
+
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 1);
+
+            box-shadow: 0px 0px 5px rgba(255,30,50,0.5), 0px 0px 10px rgba(255,30,50,1);
+            background-color: rgba(255,30,50,0.5);
+        }
+        a:hover {
+            color: black;
+            text-decoration: none;
+            box-shadow: 0px 0px 5px rgba(255,255,255,0.5), 0px 0px 10px rgba(255,255,255,1);
+            background-color: rgba(255,255,255,0.5);
+        }
+
+        .blur {
+            background: url('https://i.imgur.com/2VzVJBB.jpg') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            filter: blur(13px);
+            position: absolute;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+        }
+
+        .widget {
+            border-top: 2px solid rgba(255, 255, 255, .5);
+            border-bottom: 2px solid rgba(255, 255, 255, .5);
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .center {
+            position: absolute;
+            margin: auto;
+            top: 20%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .text {
+            height: 200px;
+            width: 370px;
+            position: center;
+        }
+
+        .text h1 {
+            text-align: center;
+            text-shadow: 1px 1px rgba(0, 0, 0, .1);
+            color: #ffffff;
+            margin-top: 57px;
+            font-family: 'Lora', serif;
+            font-weight: 700;
+            font-size: 38px;
+        }
+
+        .text p {
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 1px 1px rgba(0, 0, 0, .1);
+            margin-top: 0px;
+            font-family: 'Lato', serif;
+            font-weight: 400;
+            font-size: 22px;
+        }
+    </style>
+
 </head>
 <body>
     <div class="widget center">

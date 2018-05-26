@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>All Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <style>
+        .table{
+            width: 50%;
+            top: 10%;
+            position: absolute;
+            right: 25%;
+        }
+        #linking td:hover {
+             cursor: pointer;
+         }
+        #linking td, a{
+            color: white;
+        }
+
+        #linking td, a:hover {
+            color: deepskyblue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body style="background: url('https://webgradients.com/public/webgradients_png/019%20Malibu%20Beach.png')">
+<table align="center" class="table table-dark scroll" id="linking">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">Username</th>
+    </tr>
+    </thead>
+    <tbody>
+            <th:block th:each="user : ${users}">
+
+                    <tr>
+                        <th scope="row"><a th:href="@{'/admin/manage/users/' + ${user.username}}"></a></th>
+                        <td><a th:href="@{'/admin/manage/users/' + ${user.username}}" th:text="${user.email}">...</a></td>
+                        <td><a th:href="@{'/admin/manage/users/' + ${user.username}}" th:text="${user.username}">...</a></td>
+                    </tr>
+
+            </th:block>
+        </tbody>
+</table>
+</body>
+</html>

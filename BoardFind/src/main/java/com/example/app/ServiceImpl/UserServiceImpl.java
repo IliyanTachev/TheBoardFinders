@@ -1,8 +1,8 @@
 package com.example.app.ServiceImpl;
-
 import com.example.app.Config.Errors;
 import com.example.app.Repository.UserRepository;
 import com.example.app.Service.UserService;
+import com.example.app.entity.Role;
 import com.example.app.entity.User;
 import com.example.app.model.RegistrationModel;
 import org.modelmapper.ModelMapper;
@@ -11,8 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.modelmapper.ModelMapper.*;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -32,13 +33,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void register(RegistrationModel registrationModel) {
+        Role role = new Role();
+        role.setAuthority("ROLE_USER");
         User user = this.modelMapper.map(registrationModel, User.class);
         String encryptedPassword = this.bCryptPasswordEncoder.encode(registrationModel.getPassword());
+        user.setUsername(registrationModel.getUsername());
         user.setPassword(encryptedPassword);
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
         user.setEnabled(true);
+        user.getAuthorities().add(role);
         this.userRepository.save(user);
 
     }
