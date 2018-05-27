@@ -22,7 +22,7 @@ public class UsersController {
    }
 
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute RegistrationModel registrationModel, BindingResult bindingResult){
+    public String registerUser(@ModelAttribute RegistrationModel registrationModel, BindingResult bindingResult){
        if(bindingResult.hasErrors()) {
            return "users/register";
        }
@@ -38,11 +38,6 @@ public class UsersController {
            model.addAttribute("error", Errors.INVALID_CREDENTIALS);
        }
        return "users/login";
-    }
-
-    @GetMapping("/user")
-    public String getUserPage(){
-        return "authorities/user";
     }
 
     @GetMapping("/admin")

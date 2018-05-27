@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:thymeleaf.org">
+
+<head>
+    <title>Events & People</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./styling.css"/>
+    <style>
+        #homebody
+        {
+            background-color: #000000;
+        }
+
+        #eventspeoplebody
+        {
+            background: url(./wall.png), url(./wallpaper2.jpg);
+            background-repeat: no-repeat, repeat;
+            background-position: 0px 72px, 0px 300px;
+            background-color: #0c0c0c;
+        }
+
+        #footer
+        {
+            background-color: #0c0c0c;
+            margin-left: -0.6%;
+            margin-right: -0.6%;
+        }
+
+        #copy
+        {
+            color: #7941ad;
+            font-weight: bold;
+        }
+
+        #aboutus
+        {
+            color: white;
+            font-size: 35px;
+            font-family: fantasy;
+            margin-left: 3%;
+            margin-right: 3%;
+        }
+
+        #mail
+        {
+            color: #41b0d8;
+        }
+
+        input[type=text] {
+            width: 50%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: Helvetica;
+            font-weight: bolder;
+            background-color: white;
+            background-image: url('./searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+              -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        .transbox
+        {
+            margin-left: 10%;
+            margin-right: 10%;
+            background-color: #6c1a7c;
+            border: 1px solid black;
+            opacity: 0.9;
+        }
+
+        .transbox p
+        {
+            margin: 1%;
+            font-size: 30px;
+            font-family: Rockwell;
+            font-weight: bolder;
+            color: white;
+        }
+
+        .blue
+        {
+            color: #4b5ce5;
+        }
+
+        .profile
+        {
+            vertical-align: middle;
+        }
+
+        .transbox2
+        {
+            margin-left: 10%;
+            margin-right: 10%;
+            background-color: #6c1a7c;
+            border: 1px solid black;
+        }
+
+        .transbox2 p
+        {
+            margin: 1%;
+            font-size: 40px;
+            font-family: Rockwell;
+            font-weight: bolder;
+            color: white;
+        }
+
+        .price
+        {
+            color: red;
+        }
+
+        .transbox3
+        {
+            margin-left: 4%;
+            margin-right: 4%;
+            background-color: #6c1a7c;
+            border: 1px solid black;
+        }
+
+        .transbox3 p
+        {
+            margin: 1%;
+            font-size: 40px;
+            font-family: Rockwell;
+            font-weight: bolder;
+            color: white;
+        }
+
+        ul
+        {
+            list-style-type: none;
+            margin: -0.6%;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li
+        {
+            float: left;
+        }
+
+        li a
+        {
+            display: block;
+            color: white;
+            font-size: 30px;
+            font-family: "Segoe UI", Frutiger;
+            text-align: center;
+            padding: 16px 30px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active)
+        {
+            background-color: #111;
+        }
+
+        .active
+        {
+            background-color: #6826a5;
+        }
+
+        .logo
+        {
+            vertical-align: middle;
+        }
+
+        .heading
+        {
+            font-weight: bold;
+            font-family: "Courier New", Lucida Console;
+            font-size: 45px;
+            color: #7941ad;
+        }
+
+        .create {
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 40px;
+            font-family: Rockwell;
+            margin: 4px 2px;
+              -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: #b757c1;
+            color: black;
+            border: 2px solid #b757c1;
+            border-radius: 15px;
+        }
+
+        .button1:hover {
+            background-color: black;
+            color: #b757c1;
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+
+<body id="eventspeoplebody">
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a class="active" href="/user/eventsAndPeople">Events & People</a></li>
+    <li><a href="./Trade.html">Trade</a></li>
+    <li><a href="#chat">Chat</a></li>
+    <li><a href="#account">Account</a></li>
+    <li><a href="/user/aboutUs">About us</a></li>
+    <li style="float:right">
+        <a href="/logout">Sign out</a>
+    </li>
+</ul>
+
+<br>
+<p>
+    <img class="logo" src="https://ibb.co/iRp5Qy" width="400" height="175">
+    <span class="heading"> &nbsp Choose your game & find a team! </span>
+</p>
+
+<br>
+<div align="center">
+    <input type="text" name="search" placeholder="Search Event">
+
+</div>
+
+<br>
+<div align="center">
+    <div id="map" style="width:1200px;height:800px;background:purple"></div>
+    <div  align="center"></div>
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+                center: {lat: 42.698334, lng: 23.319941},
+                zoom: 15
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/AIzaSyBSO-FOOEwtX1HkHynBqwNNVPCJQkE-F8M"
+            async defer>
+    </script>
+</div>
+
+<br>
+<div class="transbox">
+    <p align="center">
+        <span class="blue"> INFO </span>
+    </p>
+    <p id="info">
+        <span class="blue"> Event name: </span> My first event
+        <br>
+        <span class="blue"> Games at the event: </span> Seven Wonders
+        <br>
+        <span class="blue"> Date: </span> 14.03.2018
+        <br>
+        <span class="blue"> Place: </span> Mazeto na Tosho
+        <br>
+        <span class="blue"> Players: </span> todor.domitrov2000@gmail.com, cenkocakov@gmail.com
+</div>
+</p>
+<br>
+<p align="center"> <a th:href="@{eventsAndPeople/registerEvent}"><button class="create button1"><b>Create an Event</b></button></a></p>
+
+<br><br>
+<div id="footer">
+    <br>
+    <div align="center">
+        <a href="https://www.facebook.com/todor.dimitrov.357284" target="_blank"><img src="https://ibb.co/nCaBXd" width ="90" height ="90"></a> &nbsp
+        <a href="https://twitter.com/Todorakisa" target="_blank"><img src="./2.png" width ="90" height ="90"></a> &nbsp
+        <a href="https://plus.google.com" target="_blank"><img src="./3.png" width ="90" height ="90"></a> &nbsp
+        <a href="https://www.instagram.com/todor.domitrov2000/" target="_blank"><img src="./4.png" width ="90" height ="90"></a> &nbsp
+        <br><br>
+        <a href="#Advertising" style="text-decoration: none" target="_blank"><font color="white"><font size="6"><b>Advertising</a></b>&nbsp
+        |&nbsp <a href="#Terms" style="text-decoration: none" target="_blank"><font color="white"><b>Terms and Conditions</a></b>&nbsp
+        |&nbsp <a href="#FAQ" style="text-decoration: none" target="_blank"><font color="white"><b>FAQ</a></b>&nbsp
+        |&nbsp <a href="#Contact" style="text-decoration: none" target="_blank"><font color="white"><b>Contact us</b></a></font>
+        <br><br>
+        <span id="copy">Copyright © 2018 Board Game inc.™</span>
+        <br><br>
+    </div>
+</div>
+
+</body>
+</html>
+

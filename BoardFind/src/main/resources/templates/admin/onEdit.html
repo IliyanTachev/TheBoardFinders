@@ -4,18 +4,6 @@
     <meta charset="UTF-8">
     <title>Editing User</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
-    <style>
-        .table{
-            width: 50%;
-            top: 45%;
-            position: absolute;
-            right: 25%;
-        }
-
-        #2{
-            top: 70%;
-        }
-    </style>
 </head>
 <body style="background: url('https://webgradients.com/public/webgradients_png/019%20Malibu%20Beach.png')">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -31,7 +19,7 @@
         </ul>
     </nav>
 
-    <table align="center" class="table table-dark" id="1">
+    <table align="center" class="table table-dark" id="1" style="width: 50%;position:  absolute;top: 20%;right: 25%;">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -49,27 +37,29 @@
         </th:block>
         </tbody>
     </table>
-    <!--<table align="center" class="table table-dark" id="2">-->
-        <!--<thead>-->
-        <!--<tr>-->
-            <!--<th scope="col">Editing</th>-->
-            <!--<th scope="col">Username</th>-->
-            <!--<th scope="col">Role</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<th:block th:object="${user}">-->
+    <table align="center" class="table table-dark" id="2" style="width: 50%;position:  absolute;top: 40%;right: 25%;">
+        <thead>
+        <tr>
+            <th scope="col">Editing</th>
+            <th scope="col">Username</th>
+            <th scope="col">Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:object="${user}">
 
-            <!--<tr>-->
-                <!--<td scope="row"></td>-->
-                <!--<td><input type="text"></td>-->
-                <!--<td><input type="text"></td>-->
-                <!--<td><input type="submit" value="update" ></td>-->
-            <!--</tr>-->
+            <tr>
+                <td scope="row"></td>
+                <form method="post" th:object="${data}">
+                    <td><input type="text" name="username" th:field="*{username}"/></td>
+                    <td><input type="text" name="role" th:field="*{role}" /></td>
+                    <td><input type="submit" value="update" /></td>
+                </form>
+            </tr>
 
-        <!--</th:block>-->
-        <!--</tbody>-->
-    <!--</table>-->
+        </th:block>
+        </tbody>
+    </table>
 
 </body>
 </html>
