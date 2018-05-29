@@ -1,6 +1,7 @@
 package com.example.app.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,9 +13,11 @@ public class Event {
     private long id;
 
     private String name;
-    @Column
-    @ElementCollection(targetClass=String.class)
-    private List<String> games;
+    @ElementCollection
+    @CollectionTable(name = "games_at_event", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "games")
+    private List<String> games = new ArrayList<>();
+
     @ManyToMany(fetch=FetchType.EAGER,cascade = {CascadeType.ALL})
     @JoinTable(name = "event_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
     private List<User> players;

@@ -10,10 +10,13 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
+
 
     @Autowired
     private UserService userService;
@@ -25,11 +28,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry)
+    {
+        registry
+                .addResourceHandler("/resources/**")
+                .addResourceLocations("classpath:/static/");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
+                .antMatchers("/resources/**").permitAll()
                 .antMatchers("/","/register", "/login").permitAll()
-                .antMatchers("/css/**").permitAll()
                 .antMatchers("/user/**").access("hasRole('USER') OR hasRole('ADMIN')")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

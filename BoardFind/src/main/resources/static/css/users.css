@@ -1,0 +1,17 @@
+.table{
+    width: 50%;
+    top: 20%;
+    position: absolute;
+    right: 25%;
+}
+#linking td:hover {
+    cursor: pointer;
+}
+#linking td, a{
+    color: white;
+}
+
+#linking td, a:hover {
+    color: deepskyblue;
+    text-decoration: none;
+}

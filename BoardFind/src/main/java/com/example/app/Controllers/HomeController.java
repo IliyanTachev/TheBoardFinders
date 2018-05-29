@@ -1,6 +1,7 @@
 package com.example.app.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,5 +15,10 @@ public class HomeController {
     @RequestMapping(value = "/user/aboutUs", method = RequestMethod.GET)
     public String getAboutUsPage(){
         return "home/aboutUs";
+    }
+
+    @GetMapping("/user/eventsAndPeople/ContactUs")
+    public String getContactUsPage(){
+        return "home/contactUs";
     }
 }
